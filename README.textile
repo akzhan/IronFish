@@ -57,32 +57,32 @@ h2. Directory structure
 We need simple deploy layout so we make it:
 
 pre. app_root
-pre.   README.textile
-pre.   index.php -- bootstrap here
-pre.   .htaccess
-pre.   scripts/ -- filled by theme installation
-pre.     default/
-pre.   styles/ -- filled by theme installation
-pre.     default/
-pre.   public_data/
-pre.   _engine/
-pre.     .htaccess
-pre.     file_page_cache.php
-pre.     routes.php
-pre.     mysql.php
-pre.     install.php
-pre.     bootstrap.php.dist
-pre.     bootstrap.php.tmpl
-pre.     app/
-pre.       cells/
-pre.       controllers/
-pre.       views/
-pre.       models/
-pre.       serializers/
-pre.     themes/
-pre.       default/
-pre.         metadata.yml -- describes steps to install theme automatically
-pre.         layout/
+  README.textile
+  index.php -- bootstrap here
+  .htaccess
+  scripts/ -- filled by theme installation
+    default/
+  styles/ -- filled by theme installation
+    default/
+  public_data/
+  _engine/
+    .htaccess
+    file_page_cache.php
+    routes.php
+    mysql.php
+    install.php
+    bootstrap.php.dist
+    bootstrap.php.tmpl
+    app/
+      cells/
+      controllers/
+      views/
+      models/
+      serializers/
+    themes/
+      default/
+        metadata.yml -- describes steps to install theme automatically
+        layout/
 
 h2. Hooks
 
