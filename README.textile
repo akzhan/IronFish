@@ -1,1 +1,96 @@
 PHP CMS draft.
+
+h2. Request path
+
+h3. Rewrite engine
+
+Request handled by Web server (Aache/nginx) rewrite rules.
+Static files (with versioning too) will be handled by Web server without IronFish.
+
+All other requests will be handled by index.php?q=<query string>.
+
+h3. Bootstrap
+
+Bootstrap dynamically generated (by default redirects to installation steps).
+
+Bootstrap contains dynamic module loader.
+
+For GET requests module loader loads page cache module and looks for page hit.
+
+When missed for global pages bootstrap loads session data and looks for hit
+using session information.
+
+Other types of requests will be not cached anyway (can be changed later).
+
+If page cached simply send it and exit.
+
+Note that cache module can be replaced (file/memcached/db etc.).
+
+Next step is loading of routing module.
+
+h3. Routing
+
+Request will be handled by controller/action as usual.
+
+h3. Document model
+
+Controller make document model to be handled by views.
+
+Views use incoming document model to build output document model.
+
+h3. Serialization
+
+Last step is serialization of data model to output stream.
+
+h2. Plugins/modules etc.
+
+To minimize count of files to be loaded per request we drop away
+abstract interfaces.
+
+Bootstrap module always load concrete specialization.
+
+Installation script rewrites bootstrap module itself to
+setup concrete inclusions and settings.
+
+h2. Directory structure
+
+We need simple deploy layout so we make it:
+
+app_root
+  README.textile
+  index.php -- bootstrap here
+  .htaccess
+  scripts/ -- filled by theme installation
+    default/
+  styles/ -- filled by theme installation
+    default/
+  public_data/
+  _engine/
+    .htaccess
+    file_page_cache.php
+    routes.php
+    mysql.php
+    install.php
+    bootstrap.php.dist
+    bootstrap.php.tmpl
+    app/
+      cells/
+      controllers/
+      views/
+      models/
+      serializers/
+    themes/
+      default/
+        metadata.yml -- describes steps to install theme automatically
+        layout/
+
+h2. Hooks
+
+Every module can provide and catch hooks.
+
+Modules can be loaded by bootstrap, installer, controllers and cells.
+
+h2. Theming
+
+Themes usually are applied as last step after data serialization but we have hooks.
+
